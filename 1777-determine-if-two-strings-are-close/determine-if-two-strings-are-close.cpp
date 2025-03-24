@@ -1,9 +1,7 @@
 class Solution {
 public:
     bool closeStrings(string word1, string word2) {
-        int n = word1.size();
-        int m = word2.size();
-        if(n != m){
+        if(word1.size() != word2.size()){
             return false;
         }
         unordered_set <char> chw1(word1.begin(),word1.end());
