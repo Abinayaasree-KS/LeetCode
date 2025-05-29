@@ -1,33 +1,23 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        int rows=matrix.size();
-        int cols=matrix[0].size();
-        vector<bool> zeroRows(rows, false);
-        vector<bool> zeroCols(cols, false);
-        for(int i=0; i<rows; i++){
-            for(int j=0; j<cols; j++){
-                if(matrix[i][j] == 0){
-                    zeroRows[i] = true;
-                    zeroCols[j] = true;
+        bool ZIFC = false;
+        for(int row=0; row<matrix.size(); row++ ){
+            if(matrix[row][0] == 0) ZIFC = true;
+            for(int col = 1; col<matrix[0].size(); col++){    
+                if(matrix[row][col] == 0){
+                    matrix[row][0] = 0;
+                    matrix[0][col] = 0;
                 }
-                
             }
         }
-        for(int i=0; i<rows; i++){
-                    if(zeroRows[i]){
-                        for(int j=0; j<cols; j++){
-                            matrix[i][j] = 0;
-                        }
-                    }
-                }
-                for(int j=0; j<cols; j++){
-                    if(zeroCols[j]){
-                        for(int i=0; i<rows; i++){
-                            matrix[i][j] = 0;
-                        }
-                    }
-                }
-        
+        for(int row = matrix.size()-1; row>=0; row--){
+            for(int col = matrix[0].size() - 1; col>=1; col--){
+                if(matrix[row][0] == 0 || matrix[0][col] == 0)
+                    matrix[row][col] = 0;
+            }
+            if(ZIFC)
+                matrix[row][0] = 0;
+        }
     }
 };
