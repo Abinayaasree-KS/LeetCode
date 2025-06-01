@@ -3,20 +3,19 @@ public:
     int longestConsecutive(vector<int>& nums) {
         int n=nums.size();
         if (nums.empty()) return 0;
-        int count = 1;
-        int longest = 1;
-        sort(nums.begin(), nums.end());
-        for(int i=1; i<n; i++){
-            if(nums[i] == nums[i-1]){
-                continue;
-            }           
-            if(nums[i] == nums[i-1] + 1){
-                count++;
+        int longest = 0;
+        unordered_set <int>s(nums.begin(), nums.end());
+        for(int i:s){
+            if(s.find(i-1) == s.end()){
+                int current=i;
+                int streak = 1;
+                while(s.find(current+1) != s.end()){
+                    current++;
+                    streak++;
+                }
+                longest = max(longest,streak);
             }
-            else{
-                longest = max(count, longest);
-                count = 1;}
         }
-        return max(count,longest);
+        return longest;
     }
 };
