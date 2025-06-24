@@ -1,2 +1,5 @@
 # Write your MySQL query statement below
-select Visits.customer_id, count(*) as count_no_trans from Visits where Visits.visit_id not in (select visit_id from Transactions) group by Visits.customer_id ; 
+select A.customer_id, count(*) as count_no_trans 
+from Visits A
+where A.visit_id not in (select visit_id from Transactions) 
+group by A.customer_id
