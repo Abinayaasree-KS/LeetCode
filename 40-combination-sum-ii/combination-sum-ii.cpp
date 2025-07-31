@@ -7,7 +7,7 @@ void findcombo(int start, int target, vector<int>&candidates, vector<int>& curre
     }
     if(target<0) return;
     for(int i=start; i<candidates.size(); i++){
-        if(i>start && candidates[i] == candidates[i-1]) continue;
+        if(i!=start && candidates[i] == candidates[i-1]) continue;
         current.push_back(candidates[i]);
         findcombo(i+1,target - candidates[i],candidates,current ,ans);
         current.pop_back();
