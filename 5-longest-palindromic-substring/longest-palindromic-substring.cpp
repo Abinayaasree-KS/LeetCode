@@ -14,19 +14,7 @@ public:
                 left--;
                 right++;
             }
-        }
-
-            for(int i=0; i<n-1; i++){
-            int left = i, right = i+1;
-            while(left >=0 && right<n && s[left] == s[right]){
-                st =  left;
-                max_length = right - left + 1;
-            }
-            left--;
-            right++;
-        }
-        for(int i=0; i<n-1; i++){
-            int left = i, right = i+1;
+            left = i; right = i+1;
             while(left >=0 && right<n && s[left] == s[right]){
                 if(right-left+1 > max_length){
                 st =  left;
@@ -35,7 +23,9 @@ public:
                 left--;
                 right++;
             }
+            
         }
+
         return s.substr(st, max_length);
         
     }
